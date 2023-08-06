@@ -4,7 +4,9 @@ import os
 
 def data_analysis(table_path: list, keyword: str) -> int:
     df1 = pd.read_csv(table_path[0])
+    df1['英文翻译'] = df1['英文翻译'].str.lower()
     df2 = pd.read_csv(table_path[1])
+    df2['英文翻译'] = df2['英文翻译'].str.lower()
     column_name = '含' + keyword
     column_chinese = column_name + '中文翻译'
     non_nan_1 = ~df1["英文翻译"].isna()
@@ -17,14 +19,14 @@ def data_analysis(table_path: list, keyword: str) -> int:
     re_df2 = df2.loc[:, ['cid', 'votes', column_name, column_chinese]].dropna()
     re_df1 = re_df1.sort_values(by='votes', ascending=False)
     re_df2 = re_df2.sort_values(by='votes', ascending=False)
-    sum1 = str(len(re_df1))
-    sum2 = str(len(re_df2))
+    sum1 = len(re_df1)
+    sum2 = len(re_df2)
     sum = sum1 + sum2
-    os.makedirs(column_name, exist_ok=True)
-    path1_csv = column_name + '/New' + sum1 + column_name + '.csv'
-    # path1_xlsx = column_name + '/New' + sum1 + column_name + '.xlsx'
-    path2_csv = column_name + '/Luo' + sum2 + column_name + '.csv'
-    # path2_xlsx = column_name + '/Luo' + sum2 + column_name + '.xlsx'
+    os.makedirs(column_name + str(sum), exist_ok=True)
+    path1_csv = column_name + str(sum) + '/New' + str(sum1) + column_name + '.csv'
+    # path1_xlsx = column_name + str(sum) + '/New' + str(sum1) + column_name + '.xlsx'
+    path2_csv = column_name + str(sum) + '/Luo' + str(sum2) + column_name + '.csv'
+    # path2_xlsx = column_name + str(sum) + '/Luo' + str(sum2) + column_name + '.xlsx'
     re_df1.to_csv(path1_csv)
     re_df2.to_csv(path2_csv)
     # re_df1.to_excel(path1_xlsx)
@@ -33,4 +35,4 @@ def data_analysis(table_path: list, keyword: str) -> int:
 
 
 list_file = ['New Year snacks 翻译.csv', 'Liuzhou Luosifen翻译.csv']
-data_analysis(list_file, 'Chinese')
+data_analysis(list_file, 'chinese')
