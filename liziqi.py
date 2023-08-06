@@ -46,5 +46,8 @@ def data_analysis(table_path: list, keyword: str) -> int:
     return sum
 
 
+df = pd.read_csv('keyword.csv')
+list_keyword = list(df['keywords'])
 list_file = ['New Year snacks 翻译.csv', 'Liuzhou Luosifen翻译.csv']
-data_analysis(list_file, 'chinese')
+for i in list_keyword:
+    data_analysis(list_file, i)
