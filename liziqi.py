@@ -10,11 +10,23 @@ def data_analysis(table_path: list, keyword: str) -> int:
     column_name = '含' + keyword
     column_chinese = column_name + '中文翻译'
     non_nan_1 = ~df1["英文翻译"].isna()
-    df1.loc[(df1["英文翻译"].str.contains(keyword, regex=False)) & non_nan_1, column_name] = df1['英文翻译']
-    df1.loc[(df1["英文翻译"].str.contains(keyword, regex=False)) & non_nan_1, column_chinese] = df1['中文翻译']
+    df1.loc[
+        (df1["英文翻译"].str.contains(keyword, regex=False)) & non_nan_1,
+        column_name
+        ] = df1['英文翻译']
+    df1.loc[
+        (df1["英文翻译"].str.contains(keyword, regex=False)) & non_nan_1,
+        column_chinese
+        ] = df1['中文翻译']
     non_nan_2 = ~df2["英文翻译"].isna()
-    df2.loc[(df2["英文翻译"].str.contains(keyword, regex=False)) & non_nan_2, column_name] = df2['英文翻译']
-    df2.loc[(df2["英文翻译"].str.contains(keyword, regex=False)) & non_nan_2, column_chinese] = df2['中文翻译']
+    df2.loc[
+        (df2["英文翻译"].str.contains(keyword, regex=False)) & non_nan_2,
+        column_name
+        ] = df2['英文翻译']
+    df2.loc[
+        (df2["英文翻译"].str.contains(keyword, regex=False)) & non_nan_2,
+        column_chinese
+        ] = df2['中文翻译']
     re_df1 = df1.loc[:, ['cid', 'votes', column_name, column_chinese]].dropna()
     re_df2 = df2.loc[:, ['cid', 'votes', column_name, column_chinese]].dropna()
     re_df1 = re_df1.sort_values(by='votes', ascending=False)
