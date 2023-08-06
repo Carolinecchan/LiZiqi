@@ -27,8 +27,8 @@ def data_analysis(table_path: list, keyword: str) -> int:
         (df2["英文翻译"].str.contains(keyword, regex=False)) & non_nan_2,
         column_chinese
         ] = df2['中文翻译']
-    re_df1 = df1.loc[:, ['cid', 'votes', column_name, column_chinese]].dropna()
-    re_df2 = df2.loc[:, ['cid', 'votes', column_name, column_chinese]].dropna()
+    re_df1 = df1.loc[:, ['cid', 'votes', 'time', column_name, column_chinese]].dropna()
+    re_df2 = df2.loc[:, ['cid', 'votes', 'time', column_name, column_chinese]].dropna()
     re_df1 = re_df1.sort_values(by='votes', ascending=False)
     re_df2 = re_df2.sort_values(by='votes', ascending=False)
     sum1 = len(re_df1)
