@@ -33,4 +33,4 @@ def data_analysis(table_path: list, keyword: str) -> int:
 
 
 list_file = ['New Year snacks 翻译.csv', 'Liuzhou Luosifen翻译.csv']
-data_analysis(list_file, 'culture')
+data_analysis(list_file, 'Chinese')
