@@ -22,13 +22,13 @@ def data_analysis(table_path: list, keyword: str) -> int:
     sum = sum1 + sum2
     os.makedirs(column_name, exist_ok=True)
     path1_csv = column_name + '/New' + sum1 + column_name + '.csv'
-    path1_xlsx = column_name + '/New' + sum1 + column_name + '.xlsx'
+    # path1_xlsx = column_name + '/New' + sum1 + column_name + '.xlsx'
     path2_csv = column_name + '/Luo' + sum2 + column_name + '.csv'
-    path2_xlsx = column_name + '/Luo' + sum2 + column_name + '.xlsx'
+    # path2_xlsx = column_name + '/Luo' + sum2 + column_name + '.xlsx'
     re_df1.to_csv(path1_csv)
     re_df2.to_csv(path2_csv)
-    re_df1.to_excel(path1_xlsx)
-    re_df2.to_excel(path2_xlsx)
+    # re_df1.to_excel(path1_xlsx)
+    # re_df2.to_excel(path2_xlsx)
     return sum
 
 
