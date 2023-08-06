@@ -1,9 +1,6 @@
-import numpy as np
 import pandas as pd
-from os import path
 import stylecloud
 
-import matplotlib.pyplot as plt
 
 df1 = pd.read_csv('New Year snacks 翻译.csv')
 df2 = pd.read_csv('Liuzhou Luosifen翻译.csv')
