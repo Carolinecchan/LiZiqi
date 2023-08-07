@@ -51,3 +51,5 @@ list_keyword = list(df['keywords'])
 list_file = ['New Year snacks 翻译.csv', 'Liuzhou Luosifen翻译.csv']
 for i in list_keyword:
     data_analysis(list_file, i)
+
+
