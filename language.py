@@ -20,9 +20,9 @@ def language_analysis(table_path: list) -> pd.DataFrame:
     df.loc[df['语种'] == 'Emoji', '地区'] = 'Emoji'
     df.loc[df['语种'] == '马拉雅拉姆语', 'Language'] = 'Malayalam'
     df.loc[df['语种'] == '马拉雅拉姆语', '地区'] = '亚洲'
-    df.loc[df['地区'] == '亚洲', '地区'] = 'Language of Other Asian Countries'
-    df.loc[df['地区'] == '欧洲', '地区'] = 'Language of Other European Countries'
-    df.loc[df['地区'] == '非洲', '地区'] = 'Language of Other African Countries'
+    df.loc[df['地区'] == '亚洲', '地区'] = 'Languages of Other Asian Countries'
+    df.loc[df['地区'] == '欧洲', '地区'] = 'Languages of Other European Countries'
+    df.loc[df['地区'] == '非洲', '地区'] = 'Languages of Other African Countries'
     df.to_csv('Language.csv')
     return df
 
