@@ -1,5 +1,6 @@
 import pandas as pd
 
+
 def language_analysis(table_path: list) -> pd.DataFrame:
     dfl = pd.read_csv('语种类型及数量.csv')
     dfl.drop(columns=['数字'], inplace=True)
@@ -22,7 +23,11 @@ def language_analysis(table_path: list) -> pd.DataFrame:
     df.loc[df['地区'] == '亚洲', '地区'] = 'Language of Other Asian Countries'
     df.loc[df['地区'] == '欧洲', '地区'] = 'Language of Other European Countries'
     df.loc[df['地区'] == '非洲', '地区'] = 'Language of Other African Countries'
-    return df.to_csv('Language.csv')
+    df.to_csv('Language.csv')
+    return df
+
 
 list_file = ['New Year snacks 翻译.csv', 'Liuzhou Luosifen翻译.csv']
+a = language_analysis(list_file)
 print(language_analysis(list_file))
+a.to_excel('language.xlsx')
