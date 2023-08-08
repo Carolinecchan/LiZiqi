@@ -32,6 +32,7 @@ def language_area_analysis(area_name: str) -> pd.DataFrame:
     total = sum(df['count'].to_list())
     df['pct %'] = df['count']/total * 100
     df.to_csv(area_name + '.csv')
+    df.to_excel(area_name + '.xlsx')
     return df
 
 
@@ -39,6 +40,6 @@ list_file = ['New Year snacks 翻译.csv', 'Liuzhou Luosifen翻译.csv']
 a = language_analysis(list_file)
 print(a.loc[a['地区'] == 'Languages of Other Asian Countries'])
 # a.to_excel('language.xlsx')
-# language_area_analysis('Languages of Other Asian Countries')
-# language_area_analysis('Languages of Other African Countries')
-# language_area_analysis('Languages of Other European Countries')
+language_area_analysis('Languages of Other Asian Countries')
+language_area_analysis('Languages of Other African Countries')
+language_area_analysis('Languages of Other European Countries')
