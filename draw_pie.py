@@ -1,10 +1,33 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.patches import ConnectionPatch
+import seaborn as sns
 import numpy as np
 
+from language import language_area_analysis
 
-def draw_pie_title(data: list, labels: list, explode: list, bar_ratios: list, bar_labels: list, name: str) -> plt.pie:
+
+def draw_pie_title(data: list, label: list, name: str) -> plt.pie:
+    # plt.figure(figsize=(15,8))
+    # patches, texts, autotexts = plt.pie(data, labels, autopct='%1.2f%%', pctdistance=0.7, textprops={'fontsize': 10})
+    # for autotext in autotexts:
+    #     autotext.set_horizontalalignment('center')
+    #     autotext.set_fontstyle('italic')
+    # plt.title(name, fontdict={"fontsize": 16}, pad=20)
+    # plt.savefig(name + ".png", dpi=500)
+
+    porcent = [100*i/sum(data) for i in data]
+    colors = sns.color_palette()
+    patches, texts = plt.pie(data, startangle=90, radius=1.2, colors=colors)
+    labels = ['{0} - {1:1.2f} %'.format(i, j) for i,  j in zip(label, porcent)]
+    sort_legend = True
+    if sort_legend:
+        patches, labels, dummy = zip(*sorted(zip(patches, labels, data), key=lambda x: x[2], reverse=True))
+    plt.legend(patches, labels, loc='best', bbox_to_anchor=(-0.1, 1.), fontsize=8)
+    plt.savefig(name + ".png", bbox_inches='tight', dpi=500)
+
+
+def draw_pie_bar_title(data: list, labels: list, explode: list, bar_ratios: list, bar_labels: list, name: str) -> plt.pie:
     # make figure and assign axis objects
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(9, 5))
     fig.subplots_adjust(wspace=0)
@@ -50,13 +73,15 @@ def draw_pie_title(data: list, labels: list, explode: list, bar_ratios: list, ba
     plt.savefig(name + ".png", dpi=500)
 
 
-data = [15692, 40582, 7168, 2014, 2092, 1905, 777, 1321, 9102, 3051, 4852]
-labels = ['Languages of Other Asian Countries', 'English', 'Chinese', 'Arabic', 'Russian', 'Spanish', 'French', 'Portuguese', 'Languages of Other European Countries', 'Languages of Other African Countries', 'Emoji']
-explode = [0.1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-df = pd.read_csv('Language.csv')
-df = df.loc[df['地区'] == 'Languages of Other Asian Countries']
-bar_ratios = df['count'].to_list()
-bar_ratios = [i/sum(bar_ratios) for i in bar_ratios]
-bar_labels = df['Language'].to_list()
-draw_pie_title(data=data, labels=labels, explode=explode, bar_ratios=bar_ratios, bar_labels=bar_labels, name='Language distribution')
-print(bar_ratios, bar_labels)
+data = [3051, 15692, 40582, 7168, 2014, 2092, 1905, 777, 1321, 9102, 4852]
+labels = ['Languages of Other African Countries', 'Languages of Other Asian Countries', 'English', 'Chinese', 'Arabic', 'Russian', 'Spanish', 'French', 'Portuguese', 'Languages of Other European Countries', 'Emoji']
+# explode = [0.1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+# df = pd.read_csv('Language.csv')
+# df = df.loc[df['地区'] == 'Languages of Other African Countries']
+# bar_ratios = df['count'].to_list()
+# bar_ratios = [i/sum(bar_ratios) for i in bar_ratios]
+# bar_labels = df['Language'].to_list()
+# draw_pie_title(data=data, labels=labels, explode=explode, bar_ratios=bar_ratios, bar_labels=bar_labels, name='Language distribution')
+# print(bar_ratios, bar_labels)
+
+draw_pie_title(data=data, label=labels, name='Language distribution')
